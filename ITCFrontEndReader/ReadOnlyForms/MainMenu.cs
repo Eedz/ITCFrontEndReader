@@ -71,6 +71,24 @@ namespace ITCFrontEndReader
             }
         }
 
+        private void cmdOpenQuestionSearch_Click(object sender, EventArgs e)
+        {
+            QuestionSearch frm = new QuestionSearch();
+            frm.frmParent = this;
+            frm.key = "QuestionSearch";
+            
+
+            try
+            {
+                AddTab(frm, "QuestionSearch", "QuestionSearch");
+
+            }
+            catch
+            {
+
+            }
+        }
+
         #region Tab-related methods
         /// <summary>
         /// Adds a new tab to the main tab control and adds the provided form to the tab.
@@ -110,8 +128,14 @@ namespace ITCFrontEndReader
             tabControl1.TabPages.Remove(tabControl1.TabPages[key]);
         }
 
+
+
         #endregion
 
-        
+        private void cmdOpenHarmonyReport_Click(object sender, EventArgs e)
+        {
+            HarmonyReport frm = new HarmonyReport();
+            frm.Show();
+        }
     }
 }

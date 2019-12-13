@@ -27,9 +27,6 @@ namespace ITCFrontEndReader
        
         // translation
         // deleted questions
-        // corrected questions
-        
-        // comments
 
         public SurveyEntry()
         {
@@ -187,9 +184,125 @@ namespace ITCFrontEndReader
         {
             
         }
+        #endregion
 
+        #region Menu - Functions
+        private void filterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SurveyEntryFilter frmFilter = new SurveyEntryFilter();
+            frmFilter.frmParent = this;
+            frmFilter.ShowDialog();
+        }
+
+        private void searchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // search wordings with clipboard
+            SearchWordings();
+        }
 
         #endregion
+
+        #region Menu - Go To
+        private void iSISSearchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            QuestionSearch frm = new QuestionSearch();
+            frm.frmParent = this.frmParent;
+            frm.key = "QuestionSearch";
+            frmParent.AddTab(frm, "QuestionSearch", "QuestionSearch");
+            // TODO fill in VarName
+        }
+
+        private void numberingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SurveyNumbering frm = new SurveyNumbering(CurrentSurvey.SurveyCode);
+            frm.frmParent = this.frmParent;
+            frm.key = "Numbering";
+            frmParent.AddTab(frm, "Numbering", "Numbering");
+        }
+
+        private void harmonyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
+        #endregion
+
+        #region Menu - View 
+        private void translationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TranslationViewer frm = new TranslationViewer(CurrentQuestion.ID);
+            frm.Show();
+        }
+        private void relatedQuestionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (frmBrown != null)
+            {
+                frmBrown.Close();
+            }
+
+            frmBrown = new SurveyEntryBrown(CurrentQuestion.RefVarName, frmParent.currentUser.SurveyEntryBrown[index - 1]);
+            frmBrown.frmParent = this;
+            frmBrown.Left = this.Left + 600;
+            frmBrown.Top = this.Top + 100;
+            frmBrown.TopLevel = true;
+            frmBrown.TopMost = true;
+            frmBrown.BringToFront();
+            frmBrown.Show();
+        }
+        #endregion
+
+        #region Menu - Toggle Fields
+
+        private void labelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panelLabels.Visible = !panelLabels.Visible;
+        }
+        #endregion
+
+        #region Menu - Export
+        private void questionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportToolStripMenuItem.ShowDropDown();
+        }
+
+        private void translationsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            exportToolStripMenuItem.ShowDropDown();
+        }
+
+        private void exportToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            // check which are checked
+            bool q = questionToolStripMenuItem.Checked;
+            bool t = translationsToolStripMenuItem1.Checked;
+
+            SurveyReport sr = new SurveyReport();
+            sr.AddSurvey(new ReportSurvey(CurrentSurvey.SurveyCode));
+            sr.Surveys[0].AddQuestion(CurrentQuestion);
+            if (t)
+            {
+                sr.Surveys[0].Questions[0].Translations.AddRange(DBAction.GetQuestionTranslations(sr.Surveys[0].Questions[0].ID));
+                sr.Surveys[0].TransFields.AddRange(DBAction.GetLanguages(CurrentSurvey));
+            }
+
+            sr.FileName = "\\\\psychfile\\psych$\\psych-lab-gfong\\SMG\\Access\\Reports\\ISR\\" + "Survey Entry Export - " + DateTime.Today.ToString("d").Replace("-", "");
+            sr.GenerateReport();
+
+            sr.OutputReportTableXML();
+            // TODO export items if each type is checked
+        }
+        #endregion
+
+        private void cmdToggleFieldInfo_Click(object sender, EventArgs e)
+        {
+            panelFieldInfo.Visible = !panelFieldInfo.Visible;
+            if (cmdToggleFieldInfo.Text == "v")
+                cmdToggleFieldInfo.Text = "^";
+            else
+                cmdToggleFieldInfo.Text = "v";
+        }
 
         #region Methods
 
@@ -203,7 +316,7 @@ namespace ITCFrontEndReader
             txtSurvey.DataBindings.Clear();
             txtSurvey.DataBindings.Add("Text", CurrentSurvey, "SurveyCode");
 
-           
+            CurrentQuestion = (SurveyQuestion)bs.Current;
 
             LockForm();
         }
@@ -279,161 +392,35 @@ namespace ITCFrontEndReader
             // search the current list of questions
         }
 
-            #region Menu - Functions
-            
+       
 
-            private void filterToolStripMenuItem_Click(object sender, EventArgs e)
-            {
-                SurveyEntryFilter frmFilter = new SurveyEntryFilter();
-                frmFilter.frmParent = this;
-                frmFilter.ShowDialog();
-            }
-
-            private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
-            {
-                bs.ResetBindings(false);
-            }
-
-            private void searchToolStripMenuItem_Click(object sender, EventArgs e)
-            {
-                // search wordings with clipboard
-                SearchWordings();
-            }
-
-            private void checkToolStripMenuItem_Click(object sender, EventArgs e)
-            {
-
-            }
-
-           
-
-            
-
-            #endregion
-
-            #region Menu - Popups
-            private void brownToolStripMenuItem_Click(object sender, EventArgs e)
-            {
-
-                if (frmBrown != null)
-                {
-                    frmBrown.Close();
-                }
-
-                frmBrown = new SurveyEntryBrown(CurrentQuestion.RefVarName, frmParent.currentUser.SurveyEntryBrown[index - 1]);
-                frmBrown.frmParent = this;
-                frmBrown.Left = this.Left + 600;
-                frmBrown.Top = this.Top + 100;
-                frmBrown.TopLevel = true;
-                frmBrown.TopMost = true;
-                frmBrown.BringToFront();
-                frmBrown.Show();
-            }
-
-            private void translationsToolStripMenuItem_Click(object sender, EventArgs e)
-            {
-
-            }
-            #endregion
-
-            #region Menu - Forms
-            #endregion
-
-            #region Menu - Toggle Fields
-            private void altQnumToolStripMenuItem_Click(object sender, EventArgs e)
-            {
-                lblAltQnum.Visible = !lblAltQnum.Visible;
-                txtAltQnum.Visible = !txtAltQnum.Visible;
-
-            }
-
-            private void altQnum2ToolStripMenuItem_Click(object sender, EventArgs e)
-            {
-                lblAltQnum2.Visible = !lblAltQnum2.Visible;
-                txtAltQnum2.Visible = !txtAltQnum2.Visible;
-            }
-
-            private void altQnum3ToolStripMenuItem_Click(object sender, EventArgs e)
-            {
-                lblAltQnum3.Visible = !lblAltQnum3.Visible;
-                txtAltQnum3.Visible = !txtAltQnum3.Visible;
-            }
-
-            
-
-            private void fieldInfoToolStripMenuItem_Click(object sender, EventArgs e)
-            {
-            panelFieldInfo.Visible = !panelFieldInfo.Visible;
-            }
-
-            private void labelToolStripMenuItem_Click(object sender, EventArgs e)
-            {
-                panelLabels.Visible = !panelLabels.Visible;
-            }
-            #endregion
-
-            #region Menu - Output
-            #endregion
-
-            #region Menu Items
-            private void exportToolStripMenuItem1_Click(object sender, EventArgs e)
-            {
-                int i = 0;
-            }
-
-            private void questionToolStripMenuItem1_Click(object sender, EventArgs e)
-            {
-
-
-            }
-
-            private void createEditToolStripMenuItem_Click(object sender, EventArgs e)
-            {
-
-            }
-
-
-
-
-
-            #endregion
-
-            /// <summary>
-            /// Close any popup forms that were opened by this form. Then close this form.
-            /// </summary>
-            /// <param name="sender"></param>
-            /// <param name="e"></param>
-            private void cmdClose_Click(object sender, EventArgs e)
-            {
-                if (frmBrown != null) frmBrown.Close();
-               
-              
-
-                Close();
-            }
-
-            /// <summary>
-            /// Save the survey and position for the current user. Close the tab.
-            /// </summary>
-            /// <param name="sender"></param>
-            /// <param name="e"></param>
-            private void SurveyEntry_FormClosed(object sender, FormClosedEventArgs e)
-            {
-                DBAction.SaveSession("frm" + this.Name + index, CurrentSurvey.SurveyCode, bs.Position, frmParent.currentUser);
-              
-                frmParent.CloseTab(key);
-            }
-        #endregion
-
-        private void cmdToggleFieldInfo_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Close any popup forms that were opened by this form. Then close this form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CloseForm(object sender, EventArgs e)
         {
-            panelFieldInfo.Visible = !panelFieldInfo.Visible;
-            if (cmdToggleFieldInfo.Text == "v")
-                cmdToggleFieldInfo.Text = "^";
-            else
-                cmdToggleFieldInfo.Text = "v";
+            if (frmBrown != null) frmBrown.Close();
+            Close();
+        }
+
+        /// <summary>
+        /// Save the survey and position for the current user. Close the tab.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SurveyEntry_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DBAction.SaveSession("frm" + this.Name + index, CurrentSurvey.SurveyCode, bs.Position, frmParent.currentUser);
+              
+            frmParent.CloseTab(key);
         }
 
 
+
+        #endregion
+
+        
     }
 }

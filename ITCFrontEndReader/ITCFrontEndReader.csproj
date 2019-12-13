@@ -46,39 +46,60 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainMenu.cs">
+    <Compile Include="Forms\HarmonyReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainMenu.Designer.cs">
+    <Compile Include="Forms\HarmonyReport.Designer.cs">
+      <DependentUpon>HarmonyReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReadOnlyForms\MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReadOnlyForms\MainMenu.Designer.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SurveyEntry.cs">
+    <Compile Include="Forms\QuestionSearch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SurveyEntry.Designer.cs">
+    <Compile Include="Forms\QuestionSearch.Designer.cs">
+      <DependentUpon>QuestionSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReadOnlyForms\SurveyEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReadOnlyForms\SurveyEntry.Designer.cs">
       <DependentUpon>SurveyEntry.cs</DependentUpon>
     </Compile>
-    <Compile Include="SurveyEntryBrown.cs">
+    <Compile Include="ReadOnlyForms\SurveyEntryBrown.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SurveyEntryBrown.Designer.cs">
+    <Compile Include="ReadOnlyForms\SurveyEntryBrown.Designer.cs">
       <DependentUpon>SurveyEntryBrown.cs</DependentUpon>
     </Compile>
-    <Compile Include="SurveyEntryFilter.cs">
+    <Compile Include="ReadOnlyForms\SurveyEntryFilter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SurveyEntryFilter.Designer.cs">
+    <Compile Include="ReadOnlyForms\SurveyEntryFilter.Designer.cs">
       <DependentUpon>SurveyEntryFilter.cs</DependentUpon>
     </Compile>
-    <Compile Include="SurveyNumbering.cs">
+    <Compile Include="ReadOnlyForms\SurveyNumbering.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SurveyNumbering.Designer.cs">
+    <Compile Include="ReadOnlyForms\SurveyNumbering.Designer.cs">
       <DependentUpon>SurveyNumbering.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="MainMenu.resx">
+    <Compile Include="ReadOnlyForms\TranslationViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReadOnlyForms\TranslationViewer.Designer.cs">
+      <DependentUpon>TranslationViewer.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forms\HarmonyReport.resx">
+      <DependentUpon>HarmonyReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReadOnlyForms\MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -90,17 +111,23 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SurveyEntry.resx">
+    <EmbeddedResource Include="Forms\QuestionSearch.resx">
+      <DependentUpon>QuestionSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReadOnlyForms\SurveyEntry.resx">
       <DependentUpon>SurveyEntry.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SurveyEntryBrown.resx">
+    <EmbeddedResource Include="ReadOnlyForms\SurveyEntryBrown.resx">
       <DependentUpon>SurveyEntryBrown.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SurveyEntryFilter.resx">
+    <EmbeddedResource Include="ReadOnlyForms\SurveyEntryFilter.resx">
       <DependentUpon>SurveyEntryFilter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SurveyNumbering.resx">
+    <EmbeddedResource Include="ReadOnlyForms\SurveyNumbering.resx">
       <DependentUpon>SurveyNumbering.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReadOnlyForms\TranslationViewer.resx">
+      <DependentUpon>TranslationViewer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

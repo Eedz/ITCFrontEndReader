@@ -51,7 +51,6 @@
             this.translationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.questionsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.commentsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.translationsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exportToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -227,7 +226,6 @@
             // 
             this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.questionsToolStripMenuItem1,
-            this.commentsToolStripMenuItem1,
             this.translationsToolStripMenuItem1,
             this.toolStripSeparator1,
             this.exportToolStripMenuItem1});
@@ -242,36 +240,28 @@
             this.questionsToolStripMenuItem1.CheckOnClick = true;
             this.questionsToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.questionsToolStripMenuItem1.Name = "questionsToolStripMenuItem1";
-            this.questionsToolStripMenuItem1.Size = new System.Drawing.Size(137, 22);
+            this.questionsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.questionsToolStripMenuItem1.Text = "Questions";
             this.questionsToolStripMenuItem1.Click += new System.EventHandler(this.questionsToolStripMenuItem1_Click);
-            // 
-            // commentsToolStripMenuItem1
-            // 
-            this.commentsToolStripMenuItem1.CheckOnClick = true;
-            this.commentsToolStripMenuItem1.Name = "commentsToolStripMenuItem1";
-            this.commentsToolStripMenuItem1.Size = new System.Drawing.Size(137, 22);
-            this.commentsToolStripMenuItem1.Text = "Comments";
-            this.commentsToolStripMenuItem1.Click += new System.EventHandler(this.commentsToolStripMenuItem1_Click);
             // 
             // translationsToolStripMenuItem1
             // 
             this.translationsToolStripMenuItem1.CheckOnClick = true;
             this.translationsToolStripMenuItem1.Name = "translationsToolStripMenuItem1";
-            this.translationsToolStripMenuItem1.Size = new System.Drawing.Size(137, 22);
+            this.translationsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.translationsToolStripMenuItem1.Text = "Translations";
             this.translationsToolStripMenuItem1.Click += new System.EventHandler(this.translationsToolStripMenuItem1_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(134, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // exportToolStripMenuItem1
             // 
             this.exportToolStripMenuItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.exportToolStripMenuItem1.Name = "exportToolStripMenuItem1";
-            this.exportToolStripMenuItem1.Size = new System.Drawing.Size(137, 22);
+            this.exportToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.exportToolStripMenuItem1.Text = "Export...";
             this.exportToolStripMenuItem1.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
@@ -376,7 +366,6 @@
         private System.Windows.Forms.ToolStripMenuItem translationsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem questionsToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem commentsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem translationsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

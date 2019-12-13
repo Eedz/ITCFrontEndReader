@@ -65,6 +65,7 @@
             this.cmdClear.TabIndex = 21;
             this.cmdClear.Text = "Clear";
             this.cmdClear.UseVisualStyleBackColor = true;
+            this.cmdClear.Click += new System.EventHandler(this.cmdClear_Click);
             // 
             // cmdCancel
             // 
@@ -74,6 +75,7 @@
             this.cmdCancel.TabIndex = 20;
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = true;
+            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
             // cmdApply
             // 
@@ -83,6 +85,7 @@
             this.cmdApply.TabIndex = 19;
             this.cmdApply.Text = "Apply";
             this.cmdApply.UseVisualStyleBackColor = true;
+            this.cmdApply.Click += new System.EventHandler(this.cmdApply_Click);
             // 
             // cmdAddBrown
             // 
@@ -92,6 +95,7 @@
             this.cmdAddBrown.TabIndex = 17;
             this.cmdAddBrown.Text = "<";
             this.cmdAddBrown.UseVisualStyleBackColor = true;
+            this.cmdAddBrown.Click += new System.EventHandler(this.cmdAddBrown_Click);
             // 
             // cboSurveys
             // 

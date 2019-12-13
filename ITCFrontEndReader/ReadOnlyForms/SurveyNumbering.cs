@@ -29,6 +29,14 @@ namespace ITCFrontEndReader
             InitializeComponent();
         }
 
+        public SurveyNumbering(string surveyCode)
+        {
+            InitializeComponent();
+            CurrentSurvey = DBAction.GetSurveyInfo(surveyCode);
+            
+            LoadSurvey();
+        }
+
         private void SurveyNumbering_Load(object sender, EventArgs e)
         {
             
@@ -54,15 +62,17 @@ namespace ITCFrontEndReader
 
         private void SurveyChanged(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(cboSurvey.GetItemText(cboSurvey.SelectedItem))) return;
+
+            CurrentSurvey = DBAction.GetSurveyInfo(cboSurvey.GetItemText(cboSurvey.SelectedItem));
             LoadSurvey();
 
         }
 
         private void LoadSurvey()
         {
-            if (string.IsNullOrEmpty(cboSurvey.GetItemText(cboSurvey.SelectedItem))) return;
+            if (CurrentSurvey == null) return;
 
-            CurrentSurvey = DBAction.GetSurveyInfo(cboSurvey.GetItemText(cboSurvey.SelectedItem));
             DBAction.FillQuestions(CurrentSurvey, true);
             lstReport.Items.Clear();
             lstReport.View = View.Details;
@@ -91,6 +101,7 @@ namespace ITCFrontEndReader
 
         #region Go To Menu
 
+        // TODO filter currently open form or close and open a new one?
         private void surveyEntryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (CurrentSurvey == null)
@@ -104,6 +115,8 @@ namespace ITCFrontEndReader
             }
             else
             {
+                SurveyEntry frm = (SurveyEntry)frmParent.GetTab("Survey Entry").Controls["Survey Entry"];
+                
                 frmParent.FocusTab("Survey Entry");
             }
         }
@@ -133,17 +146,11 @@ namespace ITCFrontEndReader
         {
             // check which are checked
             bool q = questionsToolStripMenuItem1.Checked;
-            bool c = commentsToolStripMenuItem1.Checked;
             bool t = translationsToolStripMenuItem1.Checked;
             // TODO export items if each type is checked
         }
 
         private void questionsToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            exportToolStripMenuItem.ShowDropDown();
-        }
-
-        private void commentsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             exportToolStripMenuItem.ShowDropDown();
         }
